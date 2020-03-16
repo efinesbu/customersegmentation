@@ -1,13 +1,8 @@
 '''
 
-This script automates the identification of new and removed members to maintain an updated distribution list
-and automatically updates an audit file.
+This script applied customer segmentation to a small mall data sample using the silhouette method and k-means
 
-1st file contains the updated roster, downloaded from a website
-2nd file contains the current distribution list (dl), downloaded from dl management location
-3rd file contains the audit log of updates, stored locally with the Communications and/or Membership Chair
-
-Required downloads: numpy, pandas, xlsxwriter
+Uncomment section by section, and run them individually
 
 '''
 import numpy as np
@@ -18,8 +13,6 @@ import seaborn as sns
 plt.style.use('fivethirtyeight')
 from sklearn.metrics import silhouette_score
 from sklearn.cluster import KMeans
-from sklearn.preprocessing import OrdinalEncoder
-ordinal_encorder = OrdinalEncoder()
 
 # IMPORT DATA
 location = 'Mall_Customers.csv' # Identify data location
@@ -65,21 +58,21 @@ data = pd.read_csv(location)    # Read data into script
 # plt.grid()
 # plt.show()
 
-# GRAPHING SEGEMENTS AGE VS SPENDING
-kmeans = KMeans(n_clusters=4, init='k-means++', max_iter=300, n_init=10, random_state=0)
-x = data.iloc[:, [2, 4]].values
-y_means = kmeans.fit_predict(x)
+# # GRAPHING SEGEMENTS AGE VS SPENDING
+# kmeans = KMeans(n_clusters=4, init='k-means++', max_iter=300, n_init=10, random_state=0)
+# x = data.iloc[:, [2, 4]].values
+# y_means = kmeans.fit_predict(x)
 
-plt.scatter(x[y_means == 0, 0], x[y_means == 0, 1], s = 100, c = 'pink', label = 'Target Young')
-plt.scatter(x[y_means == 1, 0], x[y_means == 1, 1], s = 100, c = 'green', label = 'Target')
-plt.scatter(x[y_means == 2, 0], x[y_means == 2, 1], s = 100, c = 'blue', label = 'Usual')
-plt.scatter(x[y_means == 3, 0], x[y_means == 3, 1], s = 100, c = 'orange', label = 'Target Old')
-plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=50, c='black', label='Centeroid')
+# plt.scatter(x[y_means == 0, 0], x[y_means == 0, 1], s = 100, c = 'pink', label = 'Target Young')
+# plt.scatter(x[y_means == 1, 0], x[y_means == 1, 1], s = 100, c = 'green', label = 'Target')
+# plt.scatter(x[y_means == 2, 0], x[y_means == 2, 1], s = 100, c = 'blue', label = 'Usual')
+# plt.scatter(x[y_means == 3, 0], x[y_means == 3, 1], s = 100, c = 'orange', label = 'Target Old')
+# plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=50, c='black', label='Centeroid')
 
-plt.style.use('fivethirtyeight')
-plt.title('Customer Segments | K Means Clustering', fontsize=20)
-plt.xlabel('Age')
-plt.ylabel('Spending Score')
-plt.legend()
-plt.grid()
-plt.show()
+# plt.style.use('fivethirtyeight')
+# plt.title('Customer Segments | K Means Clustering', fontsize=20)
+# plt.xlabel('Age')
+# plt.ylabel('Spending Score')
+# plt.legend()
+# plt.grid()
+# plt.show()
