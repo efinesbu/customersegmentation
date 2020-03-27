@@ -1,6 +1,6 @@
 '''
 
-This script applied customer segmentation to a small mall data sample using the silhouette method and k-means
+This script applied customer segmentation to a small mall data sample using the silhouette method and k-means 'machine learning'
 
 Uncomment section by section, and run them individually
 
